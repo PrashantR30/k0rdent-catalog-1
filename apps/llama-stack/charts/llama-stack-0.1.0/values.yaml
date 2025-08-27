@@ -1,0 +1,25 @@
+image:
+  repository: llamastack/distribution-starter
+  tag: "latest"
+  pullPolicy: Always
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8321
+
+resources: {}
+
+# No environment variables for now (no API keys)
+env: []
+
+# Pass CLI args to the distribution
+extraArgs:
+  - --port
+  - "8321"
+
+# Keep config disabled (no providers)
+config:
+  enabled: false
+  raw: ""
