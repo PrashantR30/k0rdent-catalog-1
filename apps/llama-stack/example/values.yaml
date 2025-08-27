@@ -1,0 +1,11 @@
+llama-stack:
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 8321
+  env: []         # no keys
+  config:
+    enabled: false
+  extraArgs:
+    - --port
+    - "8321"

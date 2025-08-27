@@ -1,0 +1,6 @@
+apiVersion: v2
+name: llama-stack
+description: Minimal Helm chart to deploy the Llama Stack distribution starter (no providers, no keys).
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

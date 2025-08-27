@@ -1,0 +1,43 @@
+tags:
+  - AI
+  - LLM
+title: "Llama Stack API (distribution-starter, minimal)"
+summary: "Runs the Llama Stack distribution-starter on port 8321 (no providers, no keys)."
+logo: "./assets/llama-stack-logo.png"
+created: "2025-08-27T15:10:00Z"
+description: |
+  Minimal Llama Stack distribution starter deployment on Kubernetes using k0rdent's catalog.
+  This template exposes the Llama Stack API on port 8321 with no providers configured and
+  no API keys. Suitable for smoke tests and CI; wire providers later as needed.
+charts:
+  - name: llama-stack
+    versions: ['0.1.0']
+deploy_code: |
+  ~~~yaml
+  apiVersion: k0rdent.mirantis.com/v1beta1
+  kind: MultiClusterService
+  metadata:
+    name: llama-stack
+  spec:
+    clusterSelector:
+      matchLabels:
+        group: demo
+    serviceSpec:
+      services:
+        - name: llama-stack
+          namespace: llama
+          template: llama-stack-0-1-0
+          values: |
+            llama-stack:
+              replicaCount: 1
+              service:
+                type: ClusterIP
+                port: 8321
+              env: []
+              config:
+                enabled: false
+              extraArgs:
+                - --port
+                - "8321"
+  ~~~
+doc_link: https://llama-stack.readthedocs.io/
